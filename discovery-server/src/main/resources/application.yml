@@ -1,0 +1,29 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  username: ${EUREKA_USERNAME:eureka}
+  password: ${EUREKA_PASSWORD:password}
+spring:
+  zipkin:
+    base-url: http://localhost:9411/zipkin/
+  # All traces should be sent to latency analysis tool
+#management:
+#  tracing:
+#    sampling:
+#      probability: 1.0
+#  endpoints:
+#    web:
+#      exposure:
+#        include: prometheus
+#  metrics:
+#    distribution:
+#      percentiles-histogram:
+#        http:
+#          server:
+#            requests: true
+#  logging:
+#    pattern:
+#      level: %5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]

@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/inventory_service
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  zipkin:
+    base-url: http://localhost:9411/zipkin/
+  # trace 100% of the request
+  sleuth:
+    sampler:
+      probability: 1.0
+server:
+  port: 0
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://eureka:password@localhost:8761/eureka/
+#management:
+#  tracing:
+#    sampling:
+#      probability: 1.0
